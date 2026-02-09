@@ -26,13 +26,11 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-
 # -------------------------
 # ✅ CORS (FINAL & CORRECT)
 # -------------------------
-app = FastAPI(...)
+# ❌ app = FastAPI(...)   ← THIS LINE REMOVED (ERROR FIX)
 
-# ✅ CORS HERE
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://edu-tech-xgg.vercel.app"],
@@ -42,11 +40,6 @@ app.add_middleware(
 )
 
 # routers AFTER cors
-app.include_router(api_router, prefix="/api")
-
-# -------------------------
-# ROUTERS
-# -------------------------
 from app.api.endpoints import router as api_router
 from app.api.websocket import router as ws_router
 
